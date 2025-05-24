@@ -6,6 +6,7 @@ from src.exception import coustom_execption
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 from src.components.data_transformation import data_transformation,datatransformationconfig
+from src.components.model_trainer import modeltrainer,model_trainer_config
 
 
 @dataclass
@@ -44,4 +45,7 @@ if __name__=="__main__":
     train_data,test_data=obj.initiate_data_ingestion()
 
     datatransformation=data_transformation()
-    datatransformation.initiate_data_transformation(train_data,test_data)
+    train_arr,test_arr=datatransformation.initiate_data_transformation(train_data,test_data)
+
+    model_trainer=modeltrainer()
+    print(model_trainer.initiate_model_training(train_arr,test_arr))
